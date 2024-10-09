@@ -48,7 +48,7 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
                     <TextInputField
                         name="title"
                         label="Title"
-                        type="text"
+                        type="text/babel"
                         placeholder="Title"
                         register={register}
                         registerOptions={{ required: "Required" }}

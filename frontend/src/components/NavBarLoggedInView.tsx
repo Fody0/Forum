@@ -1,11 +1,13 @@
-import { Button, Navbar } from "react-bootstrap";
+import { Button, Nav, Navbar } from "react-bootstrap";
 import { User } from "../models/user";
 import * as NotesApi from "../network/notes_api";
+import {Link} from "react-router-dom";
 
 interface NavBarLoggedInViewProps {
     user: User,
     onLogoutSuccessful: () => void,
 }
+
 
 const NavBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewProps) => {
 
@@ -19,11 +21,21 @@ const NavBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewProp
         }
     }
 
+    // async function profilePage(){
+    //     try{
+    //
+    //     }catch (e){
+    //         console.error(e);
+    //         alert(e);
+    //     }
+    // }
+
     return (
         <>
-            <Navbar.Text className="me-2">
+
+            <Nav.Link as={Link} to="/profile" className="me-2" >
                 Signed in as: {user.username}
-            </Navbar.Text>
+            </Nav.Link>
             <Button onClick={logout}>Log out</Button>
         </>
     );

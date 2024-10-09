@@ -48,6 +48,7 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
+    console.log(JSON.stringify(credentials));
     const response = await fetchData("/api/users/login",
         {
             method: "POST",
@@ -61,6 +62,11 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 
 export async function logout() {
     await fetchData("/api/users/logout", { method: "POST" });
+}
+
+export async function fetchAllNotes(): Promise<Note[]>{
+    const response = await fetchData("/api/allnotes", { method: "GET" });
+    return response.json();
 }
 
 export async function fetchNotes(): Promise<Note[]> {

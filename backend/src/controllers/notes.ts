@@ -2,7 +2,17 @@ import { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
 import NoteModel from "../models/note";
+import UserModel from "../models/user";
 import { assertIsDefined } from "../util/assertIsDefined";
+
+export const getAllNotes: RequestHandler = async (req, res, next) => {
+    try {
+        const notes = await NoteModel.find().exec();
+        res.status(200).json(notes);
+    } catch (error) {
+        next(error);
+    }
+};
 
 export const getNotes: RequestHandler = async (req, res, next) => {
     const authenticatedUserId = req.session.userId;
@@ -10,7 +20,7 @@ export const getNotes: RequestHandler = async (req, res, next) => {
     try {
         assertIsDefined(authenticatedUserId);
 
-        const notes = await NoteModel.find({ userId: authenticatedUserId }).exec();
+        const notes = await NoteModel.find({userId: authenticatedUserId }).exec();
         res.status(200).json(notes);
     } catch (error) {
         next(error);
@@ -60,11 +70,17 @@ export const createNote: RequestHandler<unknown, unknown, CreateNoteBody, unknow
         if (!title) {
             throw createHttpError(400, "Note must have a title");
         }
+        const user = await UserModel.findById(authenticatedUserId).exec();
+
+        if(!user){
+            throw createHttpError(400, "User not found");
+        }
 
         const newNote = await NoteModel.create({
             userId: authenticatedUserId,
             title: title,
             text: text,
+            username: user.username
         });
 
         res.status(201).json(newNote);

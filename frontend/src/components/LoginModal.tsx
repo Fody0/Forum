@@ -21,6 +21,7 @@ const LoginModal = ({ onDismiss, onLoginSuccessful }: LoginModalProps) => {
 
     async function onSubmit(credentials: LoginCredentials) {
         try {
+            console.log(credentials);
             const user = await NotesApi.login(credentials);
             onLoginSuccessful(user);
         } catch (error) {

@@ -10,3 +10,8 @@
 .cardText {
     white-space: pre-line;
 }
+
+.cardFooter{
+    display: flex;
+    align-items: flex-end;
+}

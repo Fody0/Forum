@@ -10,6 +10,7 @@ import * as NotesApi from "./network/notes_api";
 import NotesPage from './pages/NotesPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PrivacyPage from './pages/PrivacyPage';
+import MainPage from './pages/MainPage';
 import styles from "./styles/App.module.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 		async function fetchLoggedInUser() {
 			try {
 				const user = await NotesApi.getLoggedInUser();
+				console.log(user);
 				setLoggedInUser(user);
 			} catch (error) {
 				console.error(error);
@@ -44,7 +46,7 @@ function App() {
 					<Routes>
 						<Route
 							path='/'
-							element={<NotesPage loggedInUser={loggedInUser} />}
+							element={<MainPage />}
 						/>
 						<Route
 							path='/privacy'
@@ -53,6 +55,10 @@ function App() {
 						<Route
 							path='/*'
 							element={<NotFoundPage />}
+						/>
+						<Route
+							path='/profile'
+							element={<NotesPage loggedInUser={loggedInUser}/>}
 						/>
 					</Routes>
 				</Container>

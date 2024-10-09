@@ -1,16 +1,17 @@
 import styles from "../styles/Note.module.css";
 import styleUtils from "../styles/utils.module.css";
-import { Card } from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import { Note as NoteModel } from "../models/note";
 import { formatDate } from "../utils/formatDate";
 import { MdDelete } from "react-icons/md";
 
 interface NoteProps {
     note: NoteModel,
+    onNoteClicked: (note: NoteModel) => void,
     className?: string,
 }
 
-const MainPageNote = ({ note, className }: NoteProps) => {
+const MainPageNote = ({ note, onNoteClicked, className }: NoteProps) => {
     const {
         title,
         text,
@@ -33,7 +34,7 @@ const MainPageNote = ({ note, className }: NoteProps) => {
     return (
         <Card
             className={`${styles.noteCard} ${className}`}
-                >
+            onClick={() => onNoteClicked(note)} >
             <Card.Body className={styles.cardBody}>
                 <Card.Title className={styleUtils.flexCenter}>
                     {title}
@@ -43,12 +44,16 @@ const MainPageNote = ({ note, className }: NoteProps) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <div className="text-muted">
-                    {createdUpdatedText}
-                </div>
-                <div className={styles.cardText}>
-                    {cur_username}
-                </div>
+                <Container>
+                    <Row>
+                        <Col className="text-muted">
+                            {createdUpdatedText}
+                        </Col>
+                        <Col className={styles.cardFooter}>
+                            {cur_username}
+                        </Col>
+                    </Row>
+                </Container>
             </Card.Footer>
         </Card>
     )

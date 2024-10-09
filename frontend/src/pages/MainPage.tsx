@@ -6,7 +6,6 @@ const MainPage = () => {
     return (
         <Container className={styles.notesPage}>
             <>
-
                 <MainPageView />
             </>
         </Container>

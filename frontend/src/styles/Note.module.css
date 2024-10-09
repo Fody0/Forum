@@ -13,5 +13,9 @@
 
 .cardFooter{
     display: flex;
-    align-items: flex-end;
+    justify-content: right;
+}
+
+.cardDisplay{
+    bacground-color: black;
 }

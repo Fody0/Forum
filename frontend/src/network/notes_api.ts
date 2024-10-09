@@ -106,3 +106,14 @@ export async function updateNote(noteId: string, note: NoteInput): Promise<Note>
 export async function deleteNote(noteId: string) {
     await fetchData("/api/notes/" + noteId, { method: "DELETE" });
 }
+
+export async function getNote(noteId: string): Promise<Note> {
+    const response = await fetchData("/api/notes/" + noteId,
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    return response.json();
+}

@@ -3,6 +3,7 @@ import { User } from "../models/user";
 import * as NotesApi from "../network/notes_api";
 import {Link} from "react-router-dom";
 
+
 interface NavBarLoggedInViewProps {
     user: User,
     onLogoutSuccessful: () => void,

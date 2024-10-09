@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter, useNavigate} from 'react-router-dom';
 import LoginModal from './components/LoginModal';
 import NavBar from './components/NavBar';
 import SignUpModal from './components/SignUpModal';
@@ -12,6 +12,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PrivacyPage from './pages/PrivacyPage';
 import MainPage from './pages/MainPage';
 import styles from "./styles/App.module.css";
+import NotePage from "./pages/NotePage";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
 
 	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const [showLoginModal, setShowLoginModal] = useState(false);
+
 
 	useEffect(() => {
 		async function fetchLoggedInUser() {
@@ -60,6 +62,10 @@ function App() {
 							path='/profile'
 							element={<NotesPage loggedInUser={loggedInUser}/>}
 						/>
+						<Route
+							path='/note'
+							element={<NotePage/>}
+						/>
 					</Routes>
 				</Container>
 				{showSignUpModal &&
@@ -86,3 +92,6 @@ function App() {
 }
 
 export default App;
+
+
+//ngrok http 3000 --host-header="localhost:3000"

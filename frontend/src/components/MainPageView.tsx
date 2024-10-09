@@ -9,6 +9,7 @@ import AddEditNoteDialog from "./AddEditNoteDialog";
 import Note from './Note';
 import NotesPageLoggedInView from "./NotesPageLoggedInView";
 import MainPageNote from "./MainPageNotes";
+import {useNavigate} from "react-router-dom";
 
 const MainPageView = () => {
 
@@ -16,6 +17,10 @@ const MainPageView = () => {
     const [notesLoading, setNotesLoading] = useState(true);
     const [showNotesLoadingError, setShowNotesLoadingError] = useState(false);
 
+    const navigate = useNavigate();
+    const handleOnClick = (noteId: string, title: string, text: string) => navigate(`/note`, {
+        state: { title:title, text:text },
+    });
     useEffect(() => {
         async function loadNotes() {
             try {
@@ -40,6 +45,7 @@ const MainPageView = () => {
                 <Col key={note._id}>
                     <MainPageNote
                         note={note}
+                        onNoteClicked={() => {handleOnClick(note._id, note.title, note.text ? note.text : "")}}
                         className={styles.note}
                     />
                 </Col>

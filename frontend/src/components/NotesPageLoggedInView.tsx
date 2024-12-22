@@ -55,7 +55,7 @@ const NotesPageLoggedInView = () => {
                         onDeleteNoteClicked={deleteNote}
                     />
                 </Col>
-            ))}
+            )).reverse()}
         </Row>
 
     return (

@@ -6,6 +6,8 @@ import NotesPageLoggedInView from "../components/NotesPageLoggedInView";
 import NotesPageLoggedOutView from "../components/NotesPageLoggedOutView";
 import { Note as NoteModel } from "../models/note";
 import {User} from "../models/user";
+import Comments from "../components/Comments";
+import CommentsView from "../components/CommentsView";
 
 
 // ({ loggedInUser }: NotesPageProps) => {
@@ -29,7 +31,7 @@ import {User} from "../models/user";
 
 const NotePage = () => {
     return (
-        <NotePageView/>
+        <><NotePageView/></>
     );
 }
 

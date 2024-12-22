@@ -1,5 +1,5 @@
 .noteCard {
-    background-color: cornsilk;
+    background-color: lightgray;
 }
 
 .cardBody {
@@ -18,4 +18,8 @@
 
 .cardDisplay{
     bacground-color: black;
+}
+
+.commentCard{
+    background-color: lightgray;
 }

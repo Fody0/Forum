@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom";
 import {Card} from "react-bootstrap";
 import styles from "../styles/Note.module.css";
 import styleUtils from "../styles/utils.module.css";
+import CommentsView from "./CommentsView";
 
 const NotePageView = () => {
 
@@ -27,7 +28,6 @@ const NotePageView = () => {
     // }, []);
 
     const location = useLocation();
-
     const noteView =
         <Card
             className={`${styles.noteCard} ${styles.cardDisplay}`}>
@@ -39,6 +39,9 @@ const NotePageView = () => {
                     {location.state.text}
                 </Card.Text>
             </Card.Body>
+            {/*<Card.Footer>*/}
+            {/*    {location.state.comments.ts}*/}
+            {/*</Card.Footer>*/}
         </Card>
         {/*<Container>*/}
         {/*    <Row>*/}
@@ -72,6 +75,8 @@ const NotePageView = () => {
             {showNotesLoadingError && <p>Something went wrong. Please refresh the page.</p>}
 
             {noteView}
+
+            <CommentsView noteId = {location.state.noteId}/>
         </>
     );
 }

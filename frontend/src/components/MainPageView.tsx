@@ -19,7 +19,7 @@ const MainPageView = () => {
 
     const navigate = useNavigate();
     const handleOnClick = (noteId: string, title: string, text: string) => navigate(`/note`, {
-        state: { title:title, text:text },
+        state: { title:title, text:text, noteId: noteId },
     });
     useEffect(() => {
         async function loadNotes() {

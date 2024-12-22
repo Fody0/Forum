@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
 import notesRoutes from "./routes/notes";
 import userRoutes from "./routes/users";
+import commentsRoutes from "./routes/comments";
 import allNotesRoutes from "./routes/allnotes";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
@@ -21,7 +22,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60 * 60 * 1000,
+        maxAge: 60 * 60 * 10000 ** 2,
     },
     rolling: true,
     store: MongoStore.create({
@@ -30,6 +31,7 @@ app.use(session({
 }));
 
 app.use("/api/users", userRoutes);
+app.use("/api/comments", commentsRoutes);
 app.use("/api/notes", requiresAuth, notesRoutes);
 app.use("/api/allnotes", allNotesRoutes);
 
